@@ -1,0 +1,6 @@
+when CLIENT_DATA {
+	if { [IP::protocol] == 6 } {
+	matchaflex
+	return
+	}
+}

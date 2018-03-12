@@ -1,0 +1,30 @@
+when CLIENT_DATA {
+    if { [IP::protocol] == 17 } {
+    if { [UDP::remote_port] == 50000 } {
+	matchaflex
+	return
+	}
+    if { [UDP::payload length] == 11 } {
+        matchaflex
+        return
+	}
+    if { [UDP::payload] contains "wd" } {
+        matchaflex
+        return
+        }
+   }
+}
+
+when SERVER_DATA {
+    if { [IP::protocol] == 17 } {
+        if { [UDP::payload length] == 1068 } {
+        matchaflex
+        return
+        }
+	if { [UDP::payload length] == 11 } {
+        matchaflex
+        return
+        }
+    }
+}
+  

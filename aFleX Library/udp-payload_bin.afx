@@ -1,0 +1,6 @@
+when CLIENT_DATA {
+    set str [binary format H6 021549]
+    if { [UDP::payload] starts_with $str } { 
+        matchaflex
+    }   
+}

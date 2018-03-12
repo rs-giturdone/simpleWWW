@@ -1,0 +1,6 @@
+when SERVER_DATA {
+    if { [TCP::server_port] == 23 } {
+        matchaflex
+        return
+        }
+}

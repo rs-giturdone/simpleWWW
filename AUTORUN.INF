@@ -1,0 +1,3 @@
+[autorun]
+OPEN=ShelExec.exe @EXEDRV@\default.htm
+icon=a10-id.ico

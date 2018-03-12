@@ -1,0 +1,19 @@
+when CLIENT_DATA {
+    if { [L7CL::pkts fwd] == 1 } { 
+        if { [TCP::payload] contains "Referer: http://img.openv.tv/hd/swf/hd_player.swf" } { 
+            if { [TCP::server_port] == 80 } {
+		 L7CL::set_flag 1
+            return
+            }
+        }   
+    }   
+}
+
+when SERVER_DATA {
+    if { [L7CL::pkts rev] == 1 } { 
+        if { ([L7CL::get_flag 1] == 1) } { 
+	matchaflex
+	return
+        }   
+    }   
+}

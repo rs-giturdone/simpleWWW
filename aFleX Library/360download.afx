@@ -1,0 +1,21 @@
+when CLIENT_DATA {
+    if { [L7CL::pkts fwd] == 1 } { 
+        if { [TCP::payload] contains "Host: dl.360safe.com" } { 
+            if { [TCP::server_port] == 80 } {
+		 L7CL::set_flag 2
+            return
+            }
+        }   
+    }   
+}
+
+when SERVER_DATA {
+    if { [L7CL::pkts rev] == 1 } { 
+        if { ([L7CL::get_flag 2] == 1) } {
+	  if { [TCP::payload] contains "Content-Type: application/octet-stream" and [TCP::payload] contains "Content-Range: bytes" } {
+		matchaflex
+		return
+	     }
+        }   
+    }   
+}

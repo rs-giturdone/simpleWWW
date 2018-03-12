@@ -1,0 +1,13 @@
+when SERVER_DATA {
+	if { [IP::addr [client_addr] equals 192.168.3.252] } {
+	matchaflex
+	return
+	}
+}
+
+when CLIENT_DATA {
+	if { [IP::addr [client_addr] equals 192.168.3.252] } {
+	matchaflex
+	return
+	}
+}

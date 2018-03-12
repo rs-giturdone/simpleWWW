@@ -1,0 +1,6 @@
+when SERVER_DATA {
+    if { [TCP::remote_port] == 22 } {
+        matchaflex
+        return
+        }
+}

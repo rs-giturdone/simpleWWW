@@ -1,0 +1,17 @@
+when CLIENT_DATA {
+    set str [binary format H4 1342]
+    if { [TCP::payload] starts_with $str } { 
+        matchaflex
+    }   
+}
+
+when SERVER_DATA {
+    set str [binary format H6 400907]
+    if { [TCP::payload] contains $str } {
+        matchaflex
+    }
+    set str [binary format H4 1342]
+    if { [TCP::payload] starts_with $str } {
+        matchaflex
+    }
+}
